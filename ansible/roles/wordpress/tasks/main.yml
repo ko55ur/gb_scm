@@ -28,6 +28,9 @@
   
 - name: Set permissions for files
   shell: "/usr/bin/find /var/www/{{ server_name }}/wordpress/ -type f -exec chmod 640 {} \\;"
+- name: Set permissions for files
+  shell: "/usr/bin/find /etc/ssl/certs/ssl-cert-snakeoil.pem -type f -exec chmod 750 {} \\;"
+  shell: "/usr/bin/find /etc/ssl/private/ssl-cert-snakeoil.key -type f -exec chmod 750 {} \\;"
   
 - name: Set up wp-config
   template:

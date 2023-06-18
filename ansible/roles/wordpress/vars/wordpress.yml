@@ -8,12 +8,8 @@ mysql_password: "WordpreSS0!"
 nginx_vhosts:
   - listen: "80"
     server_name: "{{ server_name }} www.{{ server_name }}"
-    return: "301 https://{{ server_name }}$request_url"
     filename: "{{ server_name }}.80.conf"
-
-  - listen: "443 ssl http2"
-    server_name: "{{ server_name }}"
-    root: "/var/www/{{ server_name }}/wordpress"
+    root: "/var/www/{{ server_name}}/wordpress"
     index: "index.php index.html index.htm"
     error_page: "500 502 503 504 /50x.html"
     access_log: "/var/log/nginx/{{ server_name }}.access.log main"
@@ -23,11 +19,11 @@ nginx_vhosts:
     filename: "{{ server_name }}.conf"
     extra_parameters: |
       location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run//php/php-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass unix:/var/run/php/php-fpm.sock;
+          fastcgi_index index.php;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          include fastcgi_params;
       }
 
 
