@@ -2,10 +2,10 @@
 - hosts: prodko55ur
 
   vars_files:
-    - vars/wordpress.yml
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress/vars/wordpress.yml
 
   roles:
-    - nginx
-    - php
-    - mysql
-    - wordpress
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/nginx
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/php
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/mysql
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress
