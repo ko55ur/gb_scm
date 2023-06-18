@@ -1,0 +1,11 @@
+---
+- hosts: prodko55ur
+
+  vars_files:
+    - vars/wordpress.yml
+
+  roles:
+    - nginx
+    - php
+    - mysql
+    - wordpress
