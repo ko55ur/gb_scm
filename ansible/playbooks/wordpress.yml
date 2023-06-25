@@ -7,9 +7,10 @@
 
   vars_files:
     - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress/vars/wordpress.yml
+    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress/vars/wordpress-vault.yml
 
   roles:
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.nginx
+    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.nginx, tags: [nginx]}
     - /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.php
     - /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.mysql
     - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress
