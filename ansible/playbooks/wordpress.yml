@@ -11,6 +11,6 @@
 
   roles:
     - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.nginx, tags: [nginx]}
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.php
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.mysql
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress
+    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.php, tags: [php]}
+    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.mysql, tags: [mysql]}
+    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress, tags: [wordpress]}
