@@ -1,0 +1,26 @@
+- name: Add Hashicorp GPG key
+  ansible.builtin.get_url:
+    url: "{{ vagrant_url_deb }}"
+    dest: /etc/apt/keyrings/hashicorp-archive-keyring.gpg
+    mode: '0644'
+    force: true
+
+- name: Add Hashicorp repo
+  ansible.builtin.apt_repository:
+    filename: hashicorp-archive-keyring
+    repo: 'deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main'
+
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=86400
+  changed_when: false
+
+- name: Ensure virtualbox is installed.
+  apt:
+    name: "{{ virtualbox_package_name }}"
+    state: present
+
+- name: Ensure vagrant is installed.
+  apt:
+    name: "{{ vagrant_package_name }}"
+    state: present
+

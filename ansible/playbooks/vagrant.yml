@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars_files:
+    - /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/vars/main.yml
+  roles:
+    - /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant

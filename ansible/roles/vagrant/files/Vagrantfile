@@ -1,0 +1,128 @@
+Vagrant.configure("2") do |config|
+
+    config.vm.define "vm-db" do |vm_db|
+        vm_db.vm.box = "ubuntu/focal64"
+        vm_db.vm.hostname = "vm-db"
+        vm_db.vm.network "public_network", bridge: "eno2", ip: "172.16.0.100"
+        vm_db.vm.provision "shell",
+        run: "always",
+        inline: <<-SHELL
+        ip route add default via 172.16.0.1 dev enp0s8
+        SHELL
+        vm_db.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get upgrade -y
+        SHELL
+        vm_db.vm.provision "shell" do |s|
+            ssh_pub_key = File.readlines("/home/ko55ur/.ssh/vagrant_id_rsa.pub").first.strip
+            s.inline = <<-SHELL
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+            SHELL
+        end
+        vm_db.vm.provider "virtualbox" do |vb|
+            vb.memory = 2048
+            vb.cpus = 1
+        end
+    end
+    config.vm.define "vm-wordpress1" do |vm_wp1|
+        vm_wp1.vm.box = "ubuntu/focal64"
+        vm_wp1.vm.hostname = "vm-wp1"
+        vm_wp1.vm.network "public_network", bridge: "eno2", ip: "172.16.0.101"
+        vm_wp1.vm.provision "shell",
+        run: "always",
+        inline: <<-SHELL 
+        ip route add default via 172.16.0.1 dev enp0s8
+        SHELL
+        vm_wp1.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get upgrade -y
+        SHELL
+        vm_wp1.vm.provision "shell" do |s|
+            ssh_pub_key = File.readlines("/home/ko55ur/.ssh/vagrant_id_rsa.pub").first.strip
+            s.inline = <<-SHELL
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+            SHELL
+        end
+        vm_wp1.vm.provider "virtualbox" do |vb|
+            vb.memory = 2048
+            vb.cpus = 1
+        end
+    end
+    config.vm.define "vm-wordpress2" do |vm_wp2|
+        vm_wp2.vm.box = "ubuntu/focal64"
+        vm_wp2.vm.hostname = "vm-wp2"
+        vm_wp2.vm.network "public_network", bridge: "eno2", ip: "172.16.0.102"
+        vm_wp2.vm.provision "shell",
+        run: "always",
+        inline: <<-SHELL
+        ip route add default via 172.16.0.1 dev enp0s8
+        SHELL
+        vm_wp2.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get upgrade -y
+        SHELL
+        vm_wp2.vm.provision "shell" do |s|
+            ssh_pub_key = File.readlines("/home/ko55ur/.ssh/vagrant_id_rsa.pub").first.strip
+            s.inline = <<-SHELL
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+            SHELL
+        end
+        vm_wp2.vm.provider "virtualbox" do |vb|
+            vb.memory = 2048
+            vb.cpus = 1
+        end
+    end
+    config.vm.define "vm-proxy" do |vm_prx|
+        vm_prx.vm.box = "ubuntu/focal64"
+        vm_prx.vm.hostname = "vm-prx"
+        vm_prx.vm.network "public_network", bridge: "eno2", ip: "172.16.0.103"
+        vm_prx.vm.provision "shell",
+        run: "always",
+        inline: <<-SHELL
+        ip route add default via 172.16.0.1 dev enp0s8
+        SHELL
+        vm_prx.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get upgrade -y
+        SHELL
+        vm_prx.vm.provision "shell" do |s|
+            ssh_pub_key = File.readlines("/home/ko55ur/.ssh/vagrant_id_rsa.pub").first.strip
+            s.inline = <<-SHELL
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+            SHELL
+        end
+        vm_prx.vm.provider "virtualbox" do |vb|
+            vb.memory = 2048
+            vb.cpus = 1
+        end
+    end
+    config.vm.define "vm-prometheus" do |vm_prtm|
+        vm_prtm.vm.box = "ubuntu/focal64"
+        vm_prtm.vm.hostname = "vm-prtm"
+        vm_prtm.vm.network "public_network", bridge: "eno2", ip: "172.16.0.104"
+        vm_prtm.vm.provision "shell",
+        run: "always",
+        inline: <<-SHELL 
+        ip route add default via 172.16.0.1 dev enp0s8
+        SHELL
+        vm_prtm.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get upgrade -y
+        SHELL
+        vm_prtm.vm.provision "shell" do |s|
+            ssh_pub_key = File.readlines("/home/ko55ur/.ssh/vagrant_id_rsa.pub").first.strip
+            s.inline = <<-SHELL
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+            SHELL
+        end
+        vm_prtm.vm.provider "virtualbox" do |vb|
+            vb.memory = 2048
+            vb.cpus = 1
+        end
+    end 
+end

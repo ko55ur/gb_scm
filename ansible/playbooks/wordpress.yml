@@ -6,11 +6,11 @@
   remote_user: root
 
   vars_files:
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress/vars/wordpress.yml
-    - /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress/vars/wordpress-vault.yml
+    - /home/ko55ur/workspace/gb_scm/ansible/roles/wordpress/vars/wordpress.yml
+    - /home/ko55ur/workspace/gb_scm/ansible/roles/wordpress/vars/wordpress-vault.yml
 
   roles:
-    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.nginx, tags: [nginx]}
-    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.php, tags: [php]}
-    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/geerlingguy.mysql, tags: [mysql]}
-    - { role: /home/ko55ur/lessons/gb_scm/ansible/roles/wordpress, tags: [wordpress]}
+    - { role: /home/ko55ur/workspace/gb_scm/ansible/roles/geerlingguy.nginx, tags: [nginx]}
+    - { role: /home/ko55ur/workspace/gb_scm/ansible/roles/geerlingguy.php, tags: [php]}
+    - { role: /home/ko55ur/workspace/gb_scm/ansible/roles/geerlingguy.mysql, tags: [mysql]}
+    - { role: /home/ko55ur/workspace/gb_scm/ansible/roles/wordpress, tags: [wordpress]}
