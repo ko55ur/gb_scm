@@ -1,0 +1,16 @@
+---
+
+- include_tasks: Debian.yml
+  when: ansible_os_family == 'Debian' 
+
+
+- name: Remove vagrant previous file
+  file:
+    path: /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/files/.vagrant/
+    state: absent
+
+- name: vagrant up
+  shell:
+    cmd: vagrant up
+    chdir: /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/files/
+
