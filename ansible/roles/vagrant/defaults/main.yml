@@ -2,3 +2,4 @@
 # defaults file for vagrant
 virtualbox_package_name: "virtualbox"
 vagrant_package_name: "vagrant"
+dir_vagrantfile: ./files/

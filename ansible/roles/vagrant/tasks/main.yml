@@ -6,11 +6,12 @@
 
 - name: Remove vagrant previous file
   file:
-    path: /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/files/.vagrant/
+    chdir: "{{ dir_vagrantfile: }}"
+    path: .vagrant
     state: absent
 
 - name: vagrant up
   shell:
     cmd: vagrant up
-    chdir: /home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/files/
+    chdir: "{{ dir_vagrantfile: }}"
 
