@@ -10,17 +10,26 @@
     filename: hashicorp-archive-keyring
     repo: 'deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main'
 
+- name: Update all packages
+  ansible.builtin.apt:
+    name: "*"
+    state: latest    
+
 - name: Update apt cache.
-  apt: update_cache=yes cache_valid_time=86400
-  changed_when: false
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 86400
 
 - name: Ensure virtualbox is installed.
-  apt:
+  ansible.builtin.apt:
     name: "{{ virtualbox_package_name }}"
     state: present
 
 - name: Ensure vagrant is installed.
-  apt:
+  ansible.builtin.apt:
     name: "{{ vagrant_package_name }}"
     state: present
 
+- name: Run apt-get clean
+  ansible.builtin.apt:
+    clean: yes

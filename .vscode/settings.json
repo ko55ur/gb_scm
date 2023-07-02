@@ -1,3 +1,10 @@
 {
-    "ansible.python.interpreterPath": "/bin/python3"
+    "ansible.python.interpreterPath": "/bin/python3",
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/ko55ur/workspace/gb_scm/ansible/roles/vagrant/tasks/Debian.yml",
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": [
+            "file:///home/ko55ur/workspace/gb_scm/ansible/vagrant.yml",
+            "file:///home/ko55ur/workspace/gb_scm/ansible/wordpress.yml"
+        ]
+    }
 }
