@@ -3,6 +3,35 @@
 #
 # Wordpress Configuration
 #
+- name: Update all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+
+- name: Update apt cache.
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 86400
+
+- name: Remove Apache server
+  ansible.builtin.apt:
+    name: apache2
+    state: absent
+    update_cache: yes
+
+- name: Remove unwanted Apache2 packages
+  ansible.builtin.apt:
+    autoremove: yes
+    purge: yes
+
+- name: Run apt-get clean
+  ansible.builtin.apt:
+    clean: yes
+
+- name: Remove dependencies that are no longer required
+  ansible.builtin.apt:
+    autoremove: yes
+   
 - name: create /var/www/{{ server_name }} directory for unarchiving
   file:
     path: /var/www/{{ server_name }}
@@ -14,6 +43,11 @@
     dest: "/var/www/{{ server_name }}"
     remote_src: yes
     creates: "/var/www/{{ server_name }}/wordpress"
+
+- name: Set up wp-config
+  template:
+    src: "wp-config.php.j2"
+    dest: "/var/www/{{ server_name }}/wordpress/wp-config.php"
 
 - name: Set ownership
   file:
@@ -28,8 +62,3 @@
 
 - name: Set permissions for files
   shell: "/usr/bin/find /var/www/{{ server_name }}/wordpress/ -type f -exec chmod 640 {} \\;"
-
-- name: Set up wp-config
-  template:
-    src: "wp-config.php.j2"
-    dest: "/var/www/{{ server_name }}/wordpress/wp-config.php"
