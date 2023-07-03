@@ -60,5 +60,6 @@ mysql_users:
     host: "%"
     password: "{{ mysql_password }}"
     priv: "wordpress.*:ALL"
+    
 database_hostname: "172.16.0.100"
 
