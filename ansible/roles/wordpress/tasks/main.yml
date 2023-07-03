@@ -17,12 +17,20 @@
   ansible.builtin.apt:
     name: apache2
     state: absent
+    force_apt_get: true
+    autoremove: yes
     update_cache: yes
 
 - name: Remove unwanted Apache2 packages
   ansible.builtin.apt:
     autoremove: yes
     purge: yes
+
+- name: Install php-fpm
+  ansible.builtin.apt:
+    name: php-fpm
+    state: present
+    update_cache: yes
 
 - name: Run apt-get clean
   ansible.builtin.apt:
