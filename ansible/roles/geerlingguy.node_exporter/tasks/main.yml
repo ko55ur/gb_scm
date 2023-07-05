@@ -11,9 +11,15 @@
     node_exporter_version is match("latest")
     or node_exporter_version is not defined
 
-- name: Download and unarchive node_exporter into temporary location.
+- name: Download node_exporter
+  ansible.builtin.get_url:
+    url: "{{ node_exporter_download_url }}"
+    dest: /tmp
+    mode: 0755
+
+- name: Unarchive node_exporter into temporary location.
   unarchive:
-    src: "{{ node_exporter_download_url }}"
+    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
     dest: /tmp
     remote_src: true
     mode: 0755

@@ -8,7 +8,7 @@
     - vars/wordpress.yml
   roles:
     - { role: geerlingguy.mysql, tags: [mysql] }
-    - { role: geerlingguy.node_exporter, tags: [node_exporter]
+    - { role: geerlingguy.node_exporter, tags: [node_exporter] }
 
 - hosts: vmwp
   remote_user: vagrant
@@ -22,9 +22,14 @@
     - { role: geerlingguy.nginx, tags: [nginx] }
     - { role: geerlingguy.php, tags: [php] }
     - { role: wordpress, tags: [wordpress] }
-    - { role: geerlingguy.node_exporter, tags [node_exporter]
+    - { role: geerlingguy.node_exporter, tags: [node_exporter] }
 - hosts: vmprx
   remote_user: vagrant
   become: true
   roles:
     - { role: geerlingguy.haproxy, tags: [haproxy] }
+- hosts: vmprtm
+  remote_user: vagrant
+  become: true
+  roles:
+    - { role: mesaguy.prometheus, tags: [prometheus] }
