@@ -17,12 +17,20 @@
   ansible.builtin.apt:
     name: apache2
     state: absent
+    force_apt_get: true
+    autoremove: yes
     update_cache: yes
 
 - name: Remove unwanted Apache2 packages
   ansible.builtin.apt:
     autoremove: yes
     purge: yes
+
+- name: Install php-fpm
+  ansible.builtin.apt:
+    name: php-fpm
+    state: present
+    update_cache: yes
 
 - name: Run apt-get clean
   ansible.builtin.apt:
@@ -37,9 +45,15 @@
     path: /var/www/{{ server_name }}
     state: directory
 
-- name: Download and unpack latest Wordpress
+- name: Download wordpress
+  ansible.builtin.get_url:
+    url: "https://wordpress.org/latest.tar.gz"
+    dest: /tmp
+    mode: 0755
+
+- name: Unpack latest Wordpress
   unarchive:
-    src: https://wordpress.org/latest.tar.gz
+    src: "/tmp/wordpress-*.tar.gz"
     dest: "/var/www/{{ server_name }}"
     remote_src: yes
     creates: "/var/www/{{ server_name }}/wordpress"

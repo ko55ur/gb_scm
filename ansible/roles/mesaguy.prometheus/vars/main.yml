@@ -1,0 +1,7 @@
+---
+# vars file for mesaguy.prometheus
+prometheus_components:
+- prometheus
+- node_exporter
+- mysqld_exporter
+- haproxy_exporter

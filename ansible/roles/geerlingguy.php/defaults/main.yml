@@ -83,7 +83,7 @@ php_upload_max_filesize: "64M"
 php_max_file_uploads: "20"
 
 php_post_max_size: "32M"
-php_date_timezone: "America/Chicago"
+php_date_timezone: "Europe/Moscow"
 php_allow_url_fopen: "On"
 
 php_sendmail_path: "/usr/sbin/sendmail -t -i"
